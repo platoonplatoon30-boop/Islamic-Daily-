@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Daily - Berkaine Samir</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #2d6a4f;
+            --accent: #d4af37;
+            --bg: #f0f2f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding-bottom: 70px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .author-tag {
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .search-bar {
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 10;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .content-container {
+            padding: 15px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent);
+        }
+
+        .dua-title {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .arabic {
+            font-size: 1.4rem;
+            text-align: right;
+            display: block;
+            margin: 15px 0;
+            color: #222;
+            line-height: 2.2;
+        }
+
+        .traduction {
+            color: #555;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .citation-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Nav Bar */
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        nav button.active {
+            color: var(--primary);
+        }
+
+        nav button i {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 3px;
+        }
+
+        /* Tasbih */
+        .tasbih-box {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .count-circle {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border: 10px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 20px auto;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+
+        .count-circle:active { transform: scale(0.95); }
+
+        .section { display: none; }
+        .active-section { display: block; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Islamic Daily</h1>
+    <div class="author-tag">Réalisé par Berkaine Samir</div>
+</header>
+
+<div class="content-container">
+    
+    <!-- Section TASBIH -->
+    <section id="tasbih" class="section active-section">
+        <div class="tasbih-box">
+            <h2 id="zikr-txt">SubhanAllah</h2>
+            <div class="count-circle" onclick="countUp()" id="counter">0</div>
+            <p>Appuyez sur le cercle pour compter</p>
+            <button onclick="resetT()" style="background:none; border:1px solid #ccc; padding:5px 15px; border-radius:10px;">Réinitialiser</button>
+        </div>
+    </section>
+
+    <!-- Section DUAS -->
+    <section id="duas" class="section">
+        <div class="search-bar">
+            <input type="text" id="duaSearch" placeholder="Rechercher une doua..." onkeyup="filterDuas()">
+        </div>
+        <div id="duaList"></div>
+    </section>
+
+    <!-- Section CITATIONS -->
+    <section id="citations" class="section">
+        <div id="citList"></div>
+    </section>
+
+</div>
+
+<nav>
+    <button onclick="changeTab('tasbih', this)" class="active"><i class="fas fa-bead-reeve"></i>Tasbih</button>
+    <button onclick="changeTab('duas', this)"><i class="fas fa-hands-praying"></i>Douas</button>
+    <button onclick="changeTab('citations', this)"><i class="fas fa-quote-right"></i>Citations</button>
+</nav>
+
+<!-- Liens vers les scripts JS -->
+<script src="douas.js"></script>
+<script src="citations.js"></script>
+<script src="app-obfusque.js"></script>
+
+</body>
+  </html>
